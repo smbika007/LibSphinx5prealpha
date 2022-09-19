@@ -1,48 +1,48 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(beicode_VERSION 1.0.0)
+set(libsphinx5prealpha_VERSION 1.0.0)
 
 project(beicode
-	VERSION ${beicode_VERSION}
-	DESCRIPTION "A simple utf-8 based unicode decoding and encoding library"
-	HOMEPAGE_URL "https://github.com/northwindtraders/beicode"
+	VERSION ${libsphinx5prealpha_VERSION}
+	DESCRIPTION "Dependencies for using pocketsphinx in an app"
+	HOMEPAGE_URL "https://github.com/smbika007/LibSphinx5prealpha"
 	LANGUAGES CXX)
 
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
-add_library(beicode src/beicode.cpp include/beicode.h)
-add_library(beicode::beicode ALIAS beicode)
+# add_library(beicode src/beicode.cpp include/beicode.h)
+# add_library(beicode::beicode ALIAS beicode)
 
-if(BUILD_SHARED_LIBS AND WIN32)
-	target_compile_definitions(beicode
-		PRIVATE "BEICODE_EXPORT=__declspec(dllexport)"
-		INTERFACE "BEICODE_EXPORT=__declspec(dllimport)")
-endif()
+# if(BUILD_SHARED_LIBS AND WIN32)
+	# target_compile_definitions(beicode
+		# PRIVATE "BEICODE_EXPORT=__declspec(dllexport)"
+		# INTERFACE "BEICODE_EXPORT=__declspec(dllimport)")
+# endif()
 
-target_compile_features(beicode PUBLIC cxx_std_17)
-target_include_directories(beicode
+# target_compile_features(beicode PUBLIC cxx_std_17)
+target_include_directories(libsphinx5prealpha
 	PUBLIC
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 configure_package_config_file(cmake/config.cmake.in
-	${CMAKE_CURRENT_BINARY_DIR}/beicode-config.cmake
-	INSTALL_DESTINATION ${CMAKE_INSTALL_DATADIR}/beicode
+	${CMAKE_CURRENT_BINARY_DIR}/libsphinx5prealpha-config.cmake
+	INSTALL_DESTINATION ${CMAKE_INSTALL_DATADIR}/libsphinx5prealpha
 	NO_SET_AND_CHECK_MACRO)
 write_basic_package_version_file(
-	${CMAKE_CURRENT_BINARY_DIR}/beicode-config-version.cmake
-	VERSION ${beicode_VERSION}
+	${CMAKE_CURRENT_BINARY_DIR}/libsphinx5prealpha-config-version.cmake
+	VERSION ${libsphinx5prealpha}
 	COMPATIBILITY SameMajorVersion)
 install(
 	FILES
-		${CMAKE_CURRENT_BINARY_DIR}/beicode-config.cmake
-		${CMAKE_CURRENT_BINARY_DIR}/beicode-config-version.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/libsphinx5prealpha-config.cmake
+		${CMAKE_CURRENT_BINARY_DIR}/libsphinx5prealpha-config-version.cmake
 	DESTINATION
-		${CMAKE_INSTALL_DATADIR}/beicode)
+		${CMAKE_INSTALL_DATADIR}/libsphinx5prealpha)
 
-install(TARGETS beicode EXPORT beicode-targets)
+install(TARGETS libsphinx5prealpha EXPORT libsphinx5prealpha-targets)
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-install(EXPORT beicode-targets
-	NAMESPACE beicode::
-	DESTINATION ${CMAKE_INSTALL_DATADIR}/beicode)
+install(EXPORT libsphinx5prealpha-targets
+	NAMESPACE libsphinx5prealpha::
+	DESTINATION ${CMAKE_INSTALL_DATADIR}/libsphinx5prealpha)
