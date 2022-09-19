@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 
 set(libsphinx5prealpha_VERSION 1.0.0)
 
-project(beicode
+projectlibsphinx5prealpha
 	VERSION ${libsphinx5prealpha_VERSION}
 	DESCRIPTION "Dependencies for using pocketsphinx in an app"
 	HOMEPAGE_URL "https://github.com/smbika007/LibSphinx5prealpha"
